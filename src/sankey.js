@@ -196,7 +196,7 @@ export default function Sankey() {
     const columns = new Array(x);
     for (const node of nodes) {
       const i = Math.max(0, Math.min(x - 1, Math.floor(align.call(null, node, x))));
-      node.layer = i;
+      node.layer ??= i; // do not override the input layer value
       node.x0 = x0 + i * kx;
       node.x1 = node.x0 + dx;
       if (columns[i]) columns[i].push(node);
